@@ -74,9 +74,23 @@ annoColors <- list(
 ################################################
 ################################################
 
+pheatmap(sampleData, 
+         scale = "none",        # Options: "none", "row", "column"
+         clustering_distance_rows = "euclidean",  # Distance measure for rows
+         clustering_distance_cols = "euclidean",  # Distance measure for columns
+         clustering_method = "ward.D",           # Clustering method
+         main = "Basic_heatmap",
+         show_rownames = TRUE,
+         show_colnames = TRUE
+)
+
+# Save a PDF
+pdf(paste("basic_heatmap_", outprefix, ".pdf", sep=""), width = 8, height = 8)
+pheatmap(mat)
+dev.off()
 
 ################################################
 ################################################
-## Create a basic heatmap##
+## Create a complex heatmap##
 ################################################
 ################################################
