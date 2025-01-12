@@ -74,6 +74,7 @@ annoColors <- list(
 ################################################
 ################################################
 
+basic_heatmap <-
 pheatmap(sampleData, 
          scale = "none",        # Options: "none", "row", "column"
          clustering_distance_rows = "euclidean",  # Distance measure for rows
@@ -85,7 +86,8 @@ pheatmap(sampleData,
 )
 
 # Save a PDF
-pdf(paste("basic_heatmap_", outprefix, ".pdf", sep=""), width = 8, height = 8)
+pdf(paste("basic_heatmap_", outprefix, ".pdf", sep=""), width = 10, height = 8)
+print(basic_heatmap)
 dev.off()
 
 ################################################
@@ -93,3 +95,34 @@ dev.off()
 ## Create a complex heatmap##
 ################################################
 ################################################
+
+# Define custom labels for the legend
+labels <- c("Low", "Medium", "High")
+legend_colors <- brewer.pal(5, 'PuBu')
+
+complex_heatmap <-
+  pheatmap(sampleData, 
+         scale = "none",        # Options: "none", "row", "column"
+         clustering_distance_rows = "euclidean",  # Distance measure for rows
+         clustering_distance_cols = "euclidean",  # Distance measure for columns
+         clustering_method = "ward.D",           # Clustering method
+         main = "Complex_heatmap",
+         show_rownames = TRUE,
+         show_colnames = TRUE,
+         angle_col = 45,
+         annotation_row = geneFunctions,
+         annotation_col = annoData,
+         annotation_colors = annoColors,
+         annotation_names_row = FALSE,
+         annotation_names_col = FALSE,
+         breaks = c(-0.5, 0, 0.5, 1),
+         color = legend_colors,
+         legend_breaks = c(-0.5,0.25,1),
+         legend_labels = c("Low","Medium","High"),
+         annotation_legend = TRUE
+)
+
+pdf(paste("complex_heatmap_", outprefix, ".pdf", sep=""), width = 10, height = 8)
+print(complex_heatmap)
+dev.off()
+
