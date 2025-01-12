@@ -86,7 +86,6 @@ pheatmap(sampleData,
 
 # Save a PDF
 pdf(paste("basic_heatmap_", outprefix, ".pdf", sep=""), width = 8, height = 8)
-pheatmap(mat)
 dev.off()
 
 ################################################
